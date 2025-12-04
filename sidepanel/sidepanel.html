@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RMS Assistant</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>RMS Assistant</h1>
+      </div>
+      <div class="header-right">
+        <span class="connection-status disconnected" id="connectionStatus">
+          <span class="status-dot"></span>
+          <span class="status-text">Disconnected</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Messages Container -->
+    <main class="messages-container" id="messagesContainer">
+      <div class="welcome-message">
+        <p>Hi! I'm your RMS Work Assistant. I can help you with:</p>
+        <ul>
+          <li>Looking up leads in Close CRM</li>
+          <li>Starting Progressive quotes</li>
+          <li>Filling forms on web pages</li>
+          <li>Background tasks while you're on calls</li>
+        </ul>
+        <p>What can I help you with?</p>
+      </div>
+    </main>
+
+    <!-- Action Confirmation Overlay -->
+    <div class="action-overlay hidden" id="actionOverlay">
+      <div class="action-card">
+        <div class="action-header">
+          <span class="action-icon">!</span>
+          <span class="action-title">Action Request</span>
+        </div>
+        <div class="action-body" id="actionBody">
+          Agent wants to perform an action
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-deny" id="actionDeny">Deny</button>
+          <button class="btn btn-allow" id="actionAllow">Allow</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <footer class="input-area">
+      <div class="input-wrapper">
+        <textarea
+          id="messageInput"
+          placeholder="Type a message... (Shift+Enter for newline)"
+          rows="1"
+        ></textarea>
+        <button class="send-button" id="sendButton" disabled>
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">
+        <span class="tab-info" id="tabInfo">No tab selected</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

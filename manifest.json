@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "RMS Work Assistant",
+  "version": "1.0.0",
+  "description": "AI assistant for RMS Trucks - chat interface with browser control",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "sidePanel",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/browser-tools.js"]
+    }
+  ],
+  "action": {
+    "default_title": "Open RMS Assistant"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

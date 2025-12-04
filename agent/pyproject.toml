@@ -1,0 +1,28 @@
+[project]
+name = "rms-agent"
+version = "0.1.0"
+description = "AI assistant for RMS Trucks insurance agency"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "agno>=2.3.7",
+    "anthropic>=0.75.0",
+    "fastapi>=0.115.0",
+    "httpx>=0.28.1",
+    "langwatch>=0.7.2",
+    "langwatch-scenario>=0.7.14",
+    "openai>=2.9.0",
+    "pydantic>=2.12.5",
+    "pytest>=9.0.1",
+    "pytest-asyncio>=1.3.0",
+    "python-dotenv>=1.2.1",
+    "uvicorn[standard]>=0.32.0",
+    "websockets>=14.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "agent_test: marks tests as agent scenario tests",
+]

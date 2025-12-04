@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+*.egg-info/
 
 # Environment
 .env
@@ -26,3 +27,14 @@ build/
 
 # Logs
 *.log
+
+# Python
+.pytest_cache/
+.coverage
+htmlcov/
+uv.lock
+
+# Agent-specific
+agent/.venv/
+agent/__pycache__/
+agent/.env

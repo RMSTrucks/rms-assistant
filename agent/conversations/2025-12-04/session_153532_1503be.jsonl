@@ -1,3 +1,0 @@
-{"event": "session_start", "session_id": "session_153532_1503be", "metadata": {"source": "chrome_extension"}, "ts": "2025-12-04T22:35:32.915213Z"}
-{"event": "tool_call", "tool": "BrowserTools.navigate_to_url", "args": {"url": "https://foragentsonly.com"}, "result": "Navigation failed: Browser action timed out after 30.0s. Is the extension connected?", "success": true, "duration_ms": 30001.42, "ts": "2025-12-04T22:36:02.553433Z"}
-{"event": "session_end", "summary": null, "ts": "2025-12-04T22:36:03.069328Z"}

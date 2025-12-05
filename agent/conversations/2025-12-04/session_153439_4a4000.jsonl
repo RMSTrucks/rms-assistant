@@ -1,4 +1,0 @@
-{"event": "session_start", "session_id": "session_153439_4a4000", "metadata": {"source": "chrome_extension"}, "ts": "2025-12-04T22:34:39.579067Z"}
-{"event": "message", "role": "user", "content": "go to google.com", "tab_state": {"url": "chrome://extensions/?errors=midehdghegaheehnliljdngmggdbjadg", "title": "Extensions"}, "ts": "2025-12-04T22:34:44.407082Z"}
-{"event": "tool_call", "tool": "BrowserTools.navigate_to_url", "args": {"url": "https://google.com"}, "result": "Navigation failed: Browser action timed out after 30.0s. Is the extension connected?", "success": true, "duration_ms": 30009.78, "ts": "2025-12-04T22:35:17.412042Z"}
-{"event": "session_end", "summary": null, "ts": "2025-12-04T22:35:19.474719Z"}

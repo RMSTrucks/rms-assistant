@@ -1,3 +1,0 @@
-{"event": "session_start", "session_id": "session_142623_26d9a2", "metadata": {"source": "chrome_extension"}, "ts": "2025-12-04T21:26:23.442749Z"}
-{"event": "message", "role": "user", "content": "can you look up any and all transport in close?", "tab_state": {"url": "chrome://extensions/", "title": "Extensions"}, "ts": "2025-12-04T21:26:36.887289Z"}
-{"event": "session_end", "summary": null, "ts": "2025-12-04T21:29:11.078483Z"}

@@ -1,3 +1,0 @@
-{"event": "session_start", "session_id": "session_153606_76b373", "metadata": {"source": "chrome_extension"}, "ts": "2025-12-04T22:36:06.738288Z"}
-{"event": "tool_call", "tool": "BrowserTools.get_current_page", "args": {}, "result": "Failed to get page state: Browser action timed out after 30.0s. Is the extension connected?", "success": true, "duration_ms": 30007.24, "ts": "2025-12-04T22:36:36.353502Z"}
-{"event": "session_end", "summary": null, "ts": "2025-12-04T22:36:36.773051Z"}

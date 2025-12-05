@@ -38,3 +38,8 @@ uv.lock
 agent/.venv/
 agent/__pycache__/
 agent/.env
+
+# Conversation logs (may contain sensitive data)
+agent/conversations/
+conversations/
+*.jsonl

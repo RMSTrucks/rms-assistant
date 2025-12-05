@@ -1,0 +1,179 @@
+{
+  "progressive": {
+    "name": "Progressive Commercial Auto",
+    "loginUrl": "https://www.foragentsonlylogin.progressive.com/Login/",
+    "homeUrl": "https://www.foragentsonly.com/home/",
+    "quoteUrl": "https://clpolicy.foragentsonly.com/Express/Default.aspx",
+    "loginFields": {
+      "username": "input[name='UserId'], #UserId",
+      "password": "input[name='Password'], #Password",
+      "submitButton": "button:contains('Log In'), .login-btn"
+    },
+    "newQuoteFlow": {
+      "description": "Flow to start a new commercial auto quote - opens in NEW WINDOW",
+      "steps": [
+        {
+          "step": 1,
+          "page": "home",
+          "action": "select",
+          "description": "Select state from dropdown under 'New Quote'",
+          "selector": "select.state-selector, div.new-quote select",
+          "valueFrom": "quoteData.state"
+        },
+        {
+          "step": 2,
+          "page": "home",
+          "action": "click",
+          "description": "Click 'Select Product(s)' button",
+          "selector": "button:contains('Select Product'), .select-products-btn"
+        },
+        {
+          "step": 3,
+          "page": "productModal",
+          "action": "click",
+          "description": "Click 'COMMERCIAL AUTO' in Business section",
+          "selector": "button:contains('COMMERCIAL AUTO'), div[data-product='commercial-auto']"
+        },
+        {
+          "step": 4,
+          "page": "productModal",
+          "action": "click",
+          "description": "Click 'ADD PRODUCTS TO QUOTE'",
+          "selector": "button:contains('ADD PRODUCTS TO QUOTE')"
+        },
+        {
+          "step": 5,
+          "page": "quoteWizard",
+          "action": "waitForNewWindow",
+          "description": "Quote form opens in NEW WINDOW - switch to it",
+          "urlPattern": "clpolicy.foragentsonly.com"
+        }
+      ]
+    },
+    "wizardTabs": ["START", "VEHICLES", "DRIVERS", "BUSINESS", "RATES", "FINAL DETAILS", "PAYMENT", "COMPLETE"],
+    "startTabFields": {
+      "description": "START tab - Named Insured and Business Overview",
+      "sections": {
+        "policyInfo": {
+          "agentCode": {
+            "selector": "select[name*='AgentCode'], #AgentCode",
+            "type": "select",
+            "notes": "Pre-filled with agent's code"
+          },
+          "effectiveDate": {
+            "selector": "input[name*='StartDate'], input[type='date']",
+            "type": "date",
+            "valueFrom": "quoteData.effectiveDate"
+          },
+          "currentlyInsured": {
+            "selector": "input[name*='CurrentlyInsured']",
+            "type": "radio",
+            "options": ["Yes", "No"]
+          }
+        },
+        "businessInfo": {
+          "hasDOT": {
+            "selector": "input[name*='USDOT']",
+            "type": "radio",
+            "options": [
+              "Yes - the customer has a USDOT number",
+              "No - and the customer will not have a USDOT number",
+              "Not Yet - but the customer has applied/will apply within 60 days"
+            ],
+            "logic": "if quoteData.dotNumber then 'Yes' else 'No'"
+          },
+          "businessStructure": {
+            "selector": "input[name*='BusinessStructure']",
+            "type": "radio",
+            "options": ["Individual / Sole Proprietor", "Partnership", "Corporation or LLC / Non-Profit"],
+            "notes": "Most trucking companies are LLC"
+          },
+          "businessType": {
+            "selector": "input[placeholder*='Describe the business'], .business-type-search",
+            "type": "search",
+            "defaultValue": "Trucking",
+            "commonTypes": ["Contractor", "Dirt, Sand and Gravel", "Landscaping", "Towing", "Trucking"]
+          }
+        },
+        "ownerInfo": {
+          "firstName": {
+            "selector": "input[placeholder='First Name'], input[name*='FirstName']",
+            "type": "text",
+            "valueFrom": "quoteData.ownerName (split first)"
+          },
+          "middleInitial": {
+            "selector": "input[placeholder='MI'], input[name*='MiddleInitial']",
+            "type": "text"
+          },
+          "lastName": {
+            "selector": "input[placeholder='Last Name'], input[name*='LastName']",
+            "type": "text",
+            "valueFrom": "quoteData.ownerName (split last)"
+          },
+          "streetAddress": {
+            "selector": "input[placeholder='Home Address'], input[name*='StreetAddress']",
+            "type": "text",
+            "valueFrom": "quoteData.address"
+          },
+          "zipCode": {
+            "selector": "input[name*='ZIPCode'], input[name*='Zip']",
+            "type": "text",
+            "valueFrom": "quoteData.zip",
+            "notes": "May auto-populate city/state"
+          },
+          "city": {
+            "selector": "input[name*='City']",
+            "type": "text",
+            "valueFrom": "quoteData.city"
+          },
+          "state": {
+            "selector": "select[name*='State']",
+            "type": "select",
+            "valueFrom": "quoteData.state"
+          },
+          "dateOfBirth": {
+            "selector": "input[name*='DateOfBirth'], input[placeholder*='MM/DD/YYYY']",
+            "type": "date",
+            "valueFrom": "quoteData.ownerDob"
+          },
+          "phone": {
+            "type": "phone3part",
+            "areaCode": "input[name*='Phone'][name*='AreaCode'], input[name*='Phone1']",
+            "prefix": "input[name*='Phone'][name*='Prefix'], input[name*='Phone2']",
+            "suffix": "input[name*='Phone'][name*='Line'], input[name*='Phone3']",
+            "valueFrom": "quoteData.phone (split into 3 parts)"
+          }
+        }
+      }
+    },
+    "notes": [
+      "Quote form opens in NEW POPUP WINDOW - need to handle window switching",
+      "Multi-step wizard with tabs",
+      "ZIP code may auto-populate city/state",
+      "Phone is split into 3 fields (area code, prefix, line)",
+      "Owner name needs to be split into first/last",
+      "Business type uses a search/autocomplete",
+      "Has USDOT detection - can click link to check SAFER"
+    ],
+    "status": "partially-mapped",
+    "lastUpdated": "2024-12-05"
+  },
+  "bhhc": {
+    "name": "Berkshire Hathaway (BHHC)",
+    "loginUrl": "https://bfrms.bhhc.com/",
+    "status": "not-started",
+    "notes": ["Need to document login and quote flow"]
+  },
+  "geico": {
+    "name": "Geico Commercial",
+    "loginUrl": "https://agents.geico.com/",
+    "status": "not-started",
+    "notes": ["Need to document login and quote flow"]
+  },
+  "jmwilson": {
+    "name": "JM Wilson",
+    "loginUrl": "https://www.jmwilson.com/",
+    "status": "not-started",
+    "notes": ["Need to document login and quote flow"]
+  }
+}

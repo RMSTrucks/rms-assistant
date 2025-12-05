@@ -9,6 +9,9 @@ from app.tools.close_crm import CloseCRMTools
 from app.tools.nowcerts import NowCertsTools
 from app.tools.knowledge import KnowledgeTools
 from app.tools.browser import BrowserTools
+from app.tools.pdf import PDFTools
+from app.tools.workflows import WorkflowTools
+from app.tools.notes import NotesTools
 
 __all__ = [
     "DOTLookupTools",
@@ -16,4 +19,7 @@ __all__ = [
     "NowCertsTools",
     "KnowledgeTools",
     "BrowserTools",
+    "PDFTools",
+    "WorkflowTools",
+    "NotesTools",
 ]

@@ -4,21 +4,24 @@ Knowledge Tools
 Tools for answering questions about insurance processes and procedures.
 """
 
-from agno.tools import Toolkit
+from agno.tools.toolkit import Toolkit
+
+from app.observability import observe_tool
 
 
 class KnowledgeTools(Toolkit):
     """Tools for answering insurance knowledge questions."""
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         """Initialize knowledge tools."""
-        tools = [
-            self.get_process_info,
-            self.get_coverage_info,
-            self.get_compliance_requirements,
-        ]
-        super().__init__(name="knowledge", tools=tools, **kwargs)
+        super().__init__(name="knowledge")
 
+        # Register tools explicitly
+        self.register(self.get_process_info)
+        self.register(self.get_coverage_info)
+        self.register(self.get_compliance_requirements)
+
+    @observe_tool
     def get_process_info(self, topic: str) -> str:
         """
         Get information about an insurance process or procedure.
@@ -170,6 +173,7 @@ Common processes I can help with:
 
 Please ask about one of these topics or provide more details about what you need."""
 
+    @observe_tool
     def get_coverage_info(self, coverage_type: str) -> str:
         """
         Get information about a specific type of insurance coverage.
@@ -316,6 +320,7 @@ Common coverage types I can explain:
 
 Please ask about one of these or specify what coverage you need information about."""
 
+    @observe_tool
     def get_compliance_requirements(self, requirement_type: str) -> str:
         """
         Get information about FMCSA compliance requirements.

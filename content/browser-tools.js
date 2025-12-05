@@ -342,6 +342,110 @@ function describeElement(el) {
 }
 
 // ============================================================================
+// CLOSE CRM DATA EXTRACTION
+// ============================================================================
+
+/**
+ * Extract lead data from Close CRM page for quote form pre-fill
+ */
+function extractLeadDataFromPage() {
+  // Only works on Close CRM
+  if (!window.location.href.includes('app.close.com/lead/')) {
+    return { success: false, error: 'Not on a Close CRM lead page' };
+  }
+
+  const data = {};
+
+  try {
+    // Company name - from header
+    const companyNameEl = document.querySelector('h1[class*="LeadName"]') ||
+                          document.querySelector('[data-testid="lead-name"]') ||
+                          document.querySelector('.lead-name') ||
+                          document.querySelector('h1');
+    if (companyNameEl) {
+      data.companyName = companyNameEl.textContent?.trim();
+    }
+
+    // Address - from ABOUT section
+    const aboutSection = document.querySelector('[class*="About"]') ||
+                         document.querySelector('[data-section="about"]');
+    if (aboutSection) {
+      // Look for address icon (location pin)
+      const addressEl = aboutSection.querySelector('[class*="address"]') ||
+                        aboutSection.querySelector('svg[data-icon="map-marker-alt"]')?.parentElement?.parentElement;
+      if (addressEl) {
+        const addressText = addressEl.textContent?.trim();
+        if (addressText) {
+          // Try to parse address
+          const parts = addressText.split('\n').map(s => s.trim()).filter(Boolean);
+          if (parts.length >= 1) data.address = parts[0];
+          // Try to parse city, state, zip from second line
+          if (parts.length >= 2) {
+            const cityStateZip = parts[1];
+            const match = cityStateZip.match(/^(.+),\s*([A-Z]{2})\s*(\d{5})?/);
+            if (match) {
+              data.city = match[1];
+              data.state = match[2];
+              data.zip = match[3];
+            }
+          }
+        }
+      }
+    }
+
+    // Phone - from Contacts section
+    const phoneEl = document.querySelector('a[href^="tel:"]');
+    if (phoneEl) {
+      data.phone = phoneEl.textContent?.trim() || phoneEl.getAttribute('href')?.replace('tel:', '');
+    }
+
+    // Email - from Contacts section
+    const emailEl = document.querySelector('a[href^="mailto:"]');
+    if (emailEl) {
+      data.email = emailEl.textContent?.trim() || emailEl.getAttribute('href')?.replace('mailto:', '');
+    }
+
+    // Contact name - first contact in list
+    const contactSection = document.querySelector('[class*="Contacts"]') ||
+                           document.querySelector('[data-section="contacts"]');
+    if (contactSection) {
+      const contactNameEl = contactSection.querySelector('[class*="ContactName"]') ||
+                            contactSection.querySelector('a[href*="/contact/"]');
+      if (contactNameEl) {
+        data.contactName = contactNameEl.textContent?.trim();
+      }
+    }
+
+    // DOT Number - from Custom Fields
+    const customFieldsSection = document.querySelector('[class*="CustomFields"]') ||
+                                document.querySelector('[data-section="custom-fields"]');
+
+    // Look for USDOT field
+    const allText = document.body.innerText;
+
+    // Try to find DOT number pattern
+    const dotMatch = allText.match(/USDOT\s*(?:Number)?[:\s]*(\d{5,8})/i) ||
+                     allText.match(/DOT\s*#?[:\s]*(\d{5,8})/i);
+    if (dotMatch) {
+      data.dotNumber = dotMatch[1];
+    }
+
+    // Try to find MC number
+    const mcMatch = allText.match(/MC\s*#?[:\s]*(\d{5,8})/i);
+    if (mcMatch) {
+      data.mcNumber = mcMatch[1];
+    }
+
+    console.log('[RMS Browser Tools] Extracted lead data:', data);
+    return { success: true, data };
+
+  } catch (error) {
+    console.error('[RMS Browser Tools] Error extracting lead data:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+// ============================================================================
 // MESSAGE HANDLING
 // ============================================================================
 
@@ -375,6 +479,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         success: !!el,
         element: el ? describeElement(el) : null
       });
+      break;
+
+    case 'GET_LEAD_DATA':
+      // Extract lead data from Close CRM page
+      sendResponse(extractLeadDataFromPage());
       break;
 
     default:

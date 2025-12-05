@@ -7,8 +7,10 @@ requires-python = ">=3.11"
 dependencies = [
     "agno>=2.3.7",
     "anthropic>=0.75.0",
+    "browser-use>=0.10.0",
     "fastapi>=0.115.0",
     "httpx>=0.28.1",
+    "langchain-anthropic>=0.3.0",
     "langwatch>=0.7.2",
     "langwatch-scenario>=0.7.14",
     "openai>=2.9.0",
@@ -18,6 +20,7 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "uvicorn[standard]>=0.32.0",
     "websockets>=14.0",
+    "pymupdf>=1.24.0",
 ]
 
 [tool.pytest.ini_options]

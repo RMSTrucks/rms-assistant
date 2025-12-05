@@ -17,6 +17,9 @@ from app.tools.close_crm import CloseCRMTools
 from app.tools.nowcerts import NowCertsTools
 from app.tools.knowledge import KnowledgeTools
 from app.tools.browser import BrowserTools
+from app.tools.pdf import PDFTools
+from app.tools.workflows import WorkflowTools
+from app.tools.notes import NotesTools
 
 
 # Load environment variables
@@ -79,7 +82,7 @@ def get_agent() -> Agent:
 
     if _agent_instance is None:
         # Load prompt configuration
-        prompt_config = load_prompt_from_file("rms-insurance-agent")
+        prompt_config = load_prompt_from_file("rms-insurance-agent-v2")
 
         # Create the agent with all tools
         _agent_instance = Agent(
@@ -92,6 +95,9 @@ def get_agent() -> Agent:
                 NowCertsTools(),
                 KnowledgeTools(),
                 BrowserTools(),
+                PDFTools(),
+                WorkflowTools(),
+                NotesTools(),
             ],
             markdown=True,
         )

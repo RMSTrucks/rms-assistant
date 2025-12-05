@@ -1,0 +1,579 @@
+{
+  "sessions": [
+    {
+      "session_id": "session_140958_b0cbea",
+      "file": "2025-12-04\\session_140958_b0cbea.jsonl",
+      "started": "2025-12-04T21:09:58.556951Z"
+    },
+    {
+      "session_id": "session_141005_918edc",
+      "file": "2025-12-04\\session_141005_918edc.jsonl",
+      "started": "2025-12-04T21:10:05.561274Z"
+    },
+    {
+      "session_id": "session_141020_3f3e1e",
+      "file": "2025-12-04\\session_141020_3f3e1e.jsonl",
+      "started": "2025-12-04T21:10:20.773590Z"
+    },
+    {
+      "session_id": "session_141033_bd64d7",
+      "file": "2025-12-04\\session_141033_bd64d7.jsonl",
+      "started": "2025-12-04T21:10:33.247541Z"
+    },
+    {
+      "session_id": "session_141158_db0d2c",
+      "file": "2025-12-04\\session_141158_db0d2c.jsonl",
+      "started": "2025-12-04T21:11:58.624693Z"
+    },
+    {
+      "session_id": "session_142144_341495",
+      "file": "2025-12-04\\session_142144_341495.jsonl",
+      "started": "2025-12-04T21:21:44.589684Z"
+    },
+    {
+      "session_id": "session_142232_ffeb16",
+      "file": "2025-12-04\\session_142232_ffeb16.jsonl",
+      "started": "2025-12-04T21:22:32.481045Z"
+    },
+    {
+      "session_id": "session_142619_dbfe40",
+      "file": "2025-12-04\\session_142619_dbfe40.jsonl",
+      "started": "2025-12-04T21:26:19.840031Z"
+    },
+    {
+      "session_id": "session_142623_26d9a2",
+      "file": "2025-12-04\\session_142623_26d9a2.jsonl",
+      "started": "2025-12-04T21:26:23.461750Z"
+    },
+    {
+      "session_id": "session_142911_dadaa1",
+      "file": "2025-12-04\\session_142911_dadaa1.jsonl",
+      "started": "2025-12-04T21:29:11.086483Z"
+    },
+    {
+      "session_id": "session_142916_58639a",
+      "file": "2025-12-04\\session_142916_58639a.jsonl",
+      "started": "2025-12-04T21:29:16.383467Z"
+    },
+    {
+      "session_id": "session_143042_7b9e18",
+      "file": "2025-12-04\\session_143042_7b9e18.jsonl",
+      "started": "2025-12-04T21:30:42.321643Z"
+    },
+    {
+      "session_id": "session_143102_5cf5f9",
+      "file": "2025-12-04\\session_143102_5cf5f9.jsonl",
+      "started": "2025-12-04T21:31:02.687994Z"
+    },
+    {
+      "session_id": "session_143102_920297",
+      "file": "2025-12-04\\session_143102_920297.jsonl",
+      "started": "2025-12-04T21:31:02.742991Z"
+    },
+    {
+      "session_id": "session_143129_4adb53",
+      "file": "2025-12-04\\session_143129_4adb53.jsonl",
+      "started": "2025-12-04T21:31:29.567978Z"
+    },
+    {
+      "session_id": "session_143129_091a8e",
+      "file": "2025-12-04\\session_143129_091a8e.jsonl",
+      "started": "2025-12-04T21:31:29.608222Z"
+    },
+    {
+      "session_id": "session_143158_06e6a1",
+      "file": "2025-12-04\\session_143158_06e6a1.jsonl",
+      "started": "2025-12-04T21:31:58.376241Z"
+    },
+    {
+      "session_id": "session_143158_c5eaeb",
+      "file": "2025-12-04\\session_143158_c5eaeb.jsonl",
+      "started": "2025-12-04T21:31:58.415836Z"
+    },
+    {
+      "session_id": "session_143209_d36c3f",
+      "file": "2025-12-04\\session_143209_d36c3f.jsonl",
+      "started": "2025-12-04T21:32:09.058102Z"
+    },
+    {
+      "session_id": "session_143209_f9b9dc",
+      "file": "2025-12-04\\session_143209_f9b9dc.jsonl",
+      "started": "2025-12-04T21:32:09.101104Z"
+    },
+    {
+      "session_id": "session_143220_03e1fe",
+      "file": "2025-12-04\\session_143220_03e1fe.jsonl",
+      "started": "2025-12-04T21:32:20.629049Z"
+    },
+    {
+      "session_id": "session_143220_91b759",
+      "file": "2025-12-04\\session_143220_91b759.jsonl",
+      "started": "2025-12-04T21:32:20.669535Z"
+    },
+    {
+      "session_id": "session_143324_fd09d7",
+      "file": "2025-12-04\\session_143324_fd09d7.jsonl",
+      "started": "2025-12-04T21:33:24.914035Z"
+    },
+    {
+      "session_id": "session_143528_4d9d63",
+      "file": "2025-12-04\\session_143528_4d9d63.jsonl",
+      "started": "2025-12-04T21:35:28.801764Z"
+    },
+    {
+      "session_id": "session_143828_b3579c",
+      "file": "2025-12-04\\session_143828_b3579c.jsonl",
+      "started": "2025-12-04T21:38:28.874046Z"
+    },
+    {
+      "session_id": "session_144319_9ae4c7",
+      "file": "2025-12-04\\session_144319_9ae4c7.jsonl",
+      "started": "2025-12-04T21:43:19.637778Z"
+    },
+    {
+      "session_id": "session_144400_4ec343",
+      "file": "2025-12-04\\session_144400_4ec343.jsonl",
+      "started": "2025-12-04T21:44:00.662093Z"
+    },
+    {
+      "session_id": "session_144457_6dc1b8",
+      "file": "2025-12-04\\session_144457_6dc1b8.jsonl",
+      "started": "2025-12-04T21:44:58.010557Z"
+    },
+    {
+      "session_id": "session_144507_ed179a",
+      "file": "2025-12-04\\session_144507_ed179a.jsonl",
+      "started": "2025-12-04T21:45:07.931387Z"
+    },
+    {
+      "session_id": "session_144536_32cf48",
+      "file": "2025-12-04\\session_144536_32cf48.jsonl",
+      "started": "2025-12-04T21:45:36.764004Z"
+    },
+    {
+      "session_id": "session_144550_407281",
+      "file": "2025-12-04\\session_144550_407281.jsonl",
+      "started": "2025-12-04T21:45:50.598527Z"
+    },
+    {
+      "session_id": "session_144620_7062bf",
+      "file": "2025-12-04\\session_144620_7062bf.jsonl",
+      "started": "2025-12-04T21:46:20.888642Z"
+    },
+    {
+      "session_id": "session_144634_652edb",
+      "file": "2025-12-04\\session_144634_652edb.jsonl",
+      "started": "2025-12-04T21:46:34.264056Z"
+    },
+    {
+      "session_id": "session_144644_52855b",
+      "file": "2025-12-04\\session_144644_52855b.jsonl",
+      "started": "2025-12-04T21:46:44.418664Z"
+    },
+    {
+      "session_id": "session_144742_e730c7",
+      "file": "2025-12-04\\session_144742_e730c7.jsonl",
+      "started": "2025-12-04T21:47:42.030652Z"
+    },
+    {
+      "session_id": "session_144803_3eeb6c",
+      "file": "2025-12-04\\session_144803_3eeb6c.jsonl",
+      "started": "2025-12-04T21:48:03.202839Z"
+    },
+    {
+      "session_id": "session_144835_68cf89",
+      "file": "2025-12-04\\session_144835_68cf89.jsonl",
+      "started": "2025-12-04T21:48:35.218993Z"
+    },
+    {
+      "session_id": "session_144900_c6ea97",
+      "file": "2025-12-04\\session_144900_c6ea97.jsonl",
+      "started": "2025-12-04T21:49:00.640851Z"
+    },
+    {
+      "session_id": "session_144929_e0edb2",
+      "file": "2025-12-04\\session_144929_e0edb2.jsonl",
+      "started": "2025-12-04T21:49:29.912556Z"
+    },
+    {
+      "session_id": "session_145003_e7fbb4",
+      "file": "2025-12-04\\session_145003_e7fbb4.jsonl",
+      "started": "2025-12-04T21:50:03.649049Z"
+    },
+    {
+      "session_id": "session_145424_680f22",
+      "file": "2025-12-04\\session_145424_680f22.jsonl",
+      "started": "2025-12-04T21:54:24.371344Z"
+    },
+    {
+      "session_id": "session_145708_95cced",
+      "file": "2025-12-04\\session_145708_95cced.jsonl",
+      "started": "2025-12-04T21:57:08.781674Z"
+    },
+    {
+      "session_id": "session_150507_8381a3",
+      "file": "2025-12-04\\session_150507_8381a3.jsonl",
+      "started": "2025-12-04T22:05:07.335903Z"
+    },
+    {
+      "session_id": "session_150520_211985",
+      "file": "2025-12-04\\session_150520_211985.jsonl",
+      "started": "2025-12-04T22:05:20.836631Z"
+    },
+    {
+      "session_id": "session_150600_d7111e",
+      "file": "2025-12-04\\session_150600_d7111e.jsonl",
+      "started": "2025-12-04T22:06:00.245452Z"
+    },
+    {
+      "session_id": "session_150614_46f978",
+      "file": "2025-12-04\\session_150614_46f978.jsonl",
+      "started": "2025-12-04T22:06:14.099243Z"
+    },
+    {
+      "session_id": "session_150708_75b267",
+      "file": "2025-12-04\\session_150708_75b267.jsonl",
+      "started": "2025-12-04T22:07:08.086963Z"
+    },
+    {
+      "session_id": "session_150748_4749e9",
+      "file": "2025-12-04\\session_150748_4749e9.jsonl",
+      "started": "2025-12-04T22:07:48.610585Z"
+    },
+    {
+      "session_id": "session_151643_9d838d",
+      "file": "2025-12-04\\session_151643_9d838d.jsonl",
+      "started": "2025-12-04T22:16:43.881492Z"
+    },
+    {
+      "session_id": "session_151908_546f08",
+      "file": "2025-12-04\\session_151908_546f08.jsonl",
+      "started": "2025-12-04T22:19:08.438005Z"
+    },
+    {
+      "session_id": "session_151933_90a196",
+      "file": "2025-12-04\\session_151933_90a196.jsonl",
+      "started": "2025-12-04T22:19:33.922778Z"
+    },
+    {
+      "session_id": "session_152000_69bc5c",
+      "file": "2025-12-04\\session_152000_69bc5c.jsonl",
+      "started": "2025-12-04T22:20:00.306730Z"
+    },
+    {
+      "session_id": "session_152206_2e4c69",
+      "file": "2025-12-04\\session_152206_2e4c69.jsonl",
+      "started": "2025-12-04T22:22:06.642242Z"
+    },
+    {
+      "session_id": "session_152323_9d0818",
+      "file": "2025-12-04\\session_152323_9d0818.jsonl",
+      "started": "2025-12-04T22:23:23.568446Z"
+    },
+    {
+      "session_id": "session_152507_ab76f1",
+      "file": "2025-12-04\\session_152507_ab76f1.jsonl",
+      "started": "2025-12-04T22:25:07.880281Z"
+    },
+    {
+      "session_id": "session_152649_3bdfed",
+      "file": "2025-12-04\\session_152649_3bdfed.jsonl",
+      "started": "2025-12-04T22:26:49.133156Z"
+    },
+    {
+      "session_id": "session_152712_d8b3ed",
+      "file": "2025-12-04\\session_152712_d8b3ed.jsonl",
+      "started": "2025-12-04T22:27:12.420461Z"
+    },
+    {
+      "session_id": "session_152730_d6b55d",
+      "file": "2025-12-04\\session_152730_d6b55d.jsonl",
+      "started": "2025-12-04T22:27:30.964860Z"
+    },
+    {
+      "session_id": "session_152738_8e1876",
+      "file": "2025-12-04\\session_152738_8e1876.jsonl",
+      "started": "2025-12-04T22:27:38.643930Z"
+    },
+    {
+      "session_id": "session_152748_9b7e93",
+      "file": "2025-12-04\\session_152748_9b7e93.jsonl",
+      "started": "2025-12-04T22:27:48.776653Z"
+    },
+    {
+      "session_id": "session_152822_86d100",
+      "file": "2025-12-04\\session_152822_86d100.jsonl",
+      "started": "2025-12-04T22:28:22.227596Z"
+    },
+    {
+      "session_id": "session_152859_18132d",
+      "file": "2025-12-04\\session_152859_18132d.jsonl",
+      "started": "2025-12-04T22:28:59.266123Z"
+    },
+    {
+      "session_id": "session_152933_a4bb26",
+      "file": "2025-12-04\\session_152933_a4bb26.jsonl",
+      "started": "2025-12-04T22:29:33.886141Z"
+    },
+    {
+      "session_id": "session_153154_17ace9",
+      "file": "2025-12-04\\session_153154_17ace9.jsonl",
+      "started": "2025-12-04T22:31:54.602237Z"
+    },
+    {
+      "session_id": "session_153425_251dad",
+      "file": "2025-12-04\\session_153425_251dad.jsonl",
+      "started": "2025-12-04T22:34:25.751714Z"
+    },
+    {
+      "session_id": "session_153429_78fcde",
+      "file": "2025-12-04\\session_153429_78fcde.jsonl",
+      "started": "2025-12-04T22:34:29.506368Z"
+    },
+    {
+      "session_id": "session_153439_4a4000",
+      "file": "2025-12-04\\session_153439_4a4000.jsonl",
+      "started": "2025-12-04T22:34:39.600067Z"
+    },
+    {
+      "session_id": "session_153525_800c01",
+      "file": "2025-12-04\\session_153525_800c01.jsonl",
+      "started": "2025-12-04T22:35:25.862138Z"
+    },
+    {
+      "session_id": "session_153532_1503be",
+      "file": "2025-12-04\\session_153532_1503be.jsonl",
+      "started": "2025-12-04T22:35:32.932203Z"
+    },
+    {
+      "session_id": "session_153606_76b373",
+      "file": "2025-12-04\\session_153606_76b373.jsonl",
+      "started": "2025-12-04T22:36:06.757285Z"
+    },
+    {
+      "session_id": "session_153648_a6056e",
+      "file": "2025-12-04\\session_153648_a6056e.jsonl",
+      "started": "2025-12-04T22:36:48.992171Z"
+    },
+    {
+      "session_id": "session_153703_dd4acd",
+      "file": "2025-12-04\\session_153703_dd4acd.jsonl",
+      "started": "2025-12-04T22:37:03.405382Z"
+    },
+    {
+      "session_id": "session_153859_93b1f4",
+      "file": "2025-12-04\\session_153859_93b1f4.jsonl",
+      "started": "2025-12-04T22:38:59.249203Z"
+    },
+    {
+      "session_id": "session_153903_a27b3e",
+      "file": "2025-12-04\\session_153903_a27b3e.jsonl",
+      "started": "2025-12-04T22:39:03.977718Z"
+    },
+    {
+      "session_id": "session_154129_b5daae",
+      "file": "2025-12-04\\session_154129_b5daae.jsonl",
+      "started": "2025-12-04T22:41:29.880330Z"
+    },
+    {
+      "session_id": "session_154136_7a2f9c",
+      "file": "2025-12-04\\session_154136_7a2f9c.jsonl",
+      "started": "2025-12-04T22:41:36.938792Z"
+    },
+    {
+      "session_id": "session_154309_e7ee0e",
+      "file": "2025-12-04\\session_154309_e7ee0e.jsonl",
+      "started": "2025-12-04T22:43:09.690809Z"
+    },
+    {
+      "session_id": "session_154833_4f8b0c",
+      "file": "2025-12-04\\session_154833_4f8b0c.jsonl",
+      "started": "2025-12-04T22:48:33.078918Z"
+    },
+    {
+      "session_id": "session_155200_074c9f",
+      "file": "2025-12-04\\session_155200_074c9f.jsonl",
+      "started": "2025-12-04T22:52:00.450893Z"
+    },
+    {
+      "session_id": "session_155838_5c766d",
+      "file": "2025-12-04\\session_155838_5c766d.jsonl",
+      "started": "2025-12-04T22:58:38.703171Z"
+    },
+    {
+      "session_id": "session_155853_5c7c79",
+      "file": "2025-12-04\\session_155853_5c7c79.jsonl",
+      "started": "2025-12-04T22:58:53.693016Z"
+    },
+    {
+      "session_id": "session_155907_4c428c",
+      "file": "2025-12-04\\session_155907_4c428c.jsonl",
+      "started": "2025-12-04T22:59:07.174404Z"
+    },
+    {
+      "session_id": "session_160002_697e35",
+      "file": "2025-12-04\\session_160002_697e35.jsonl",
+      "started": "2025-12-04T23:00:03.128751Z"
+    },
+    {
+      "session_id": "session_160021_0bbb1a",
+      "file": "2025-12-04\\session_160021_0bbb1a.jsonl",
+      "started": "2025-12-04T23:00:21.476122Z"
+    },
+    {
+      "session_id": "session_160137_585c73",
+      "file": "2025-12-04\\session_160137_585c73.jsonl",
+      "started": "2025-12-04T23:01:37.557558Z"
+    },
+    {
+      "session_id": "session_160150_7e8676",
+      "file": "2025-12-04\\session_160150_7e8676.jsonl",
+      "started": "2025-12-04T23:01:50.997000Z"
+    },
+    {
+      "session_id": "session_160536_6e29e8",
+      "file": "2025-12-04\\session_160536_6e29e8.jsonl",
+      "started": "2025-12-04T23:05:36.484783Z"
+    },
+    {
+      "session_id": "session_160640_d7fe50",
+      "file": "2025-12-04\\session_160640_d7fe50.jsonl",
+      "started": "2025-12-04T23:06:40.027619Z"
+    },
+    {
+      "session_id": "session_160812_d6e8f0",
+      "file": "2025-12-04\\session_160812_d6e8f0.jsonl",
+      "started": "2025-12-04T23:08:12.083278Z"
+    },
+    {
+      "session_id": "session_220651_83909a",
+      "file": "2025-12-04\\session_220651_83909a.jsonl",
+      "started": "2025-12-05T05:06:51.224219Z"
+    },
+    {
+      "session_id": "session_221144_a26f6b",
+      "file": "2025-12-04\\session_221144_a26f6b.jsonl",
+      "started": "2025-12-05T05:11:44.614854Z"
+    },
+    {
+      "session_id": "session_221239_b465d8",
+      "file": "2025-12-04\\session_221239_b465d8.jsonl",
+      "started": "2025-12-05T05:12:39.909598Z"
+    },
+    {
+      "session_id": "session_221316_e2b0c5",
+      "file": "2025-12-04\\session_221316_e2b0c5.jsonl",
+      "started": "2025-12-05T05:13:16.498383Z"
+    },
+    {
+      "session_id": "session_222508_3726ff",
+      "file": "2025-12-04\\session_222508_3726ff.jsonl",
+      "started": "2025-12-05T05:25:08.070488Z"
+    },
+    {
+      "session_id": "session_222727_06478c",
+      "file": "2025-12-04\\session_222727_06478c.jsonl",
+      "started": "2025-12-05T05:27:27.611005Z"
+    },
+    {
+      "session_id": "session_223635_6cbf22",
+      "file": "2025-12-04\\session_223635_6cbf22.jsonl",
+      "started": "2025-12-05T05:36:35.415002Z"
+    },
+    {
+      "session_id": "session_223649_8489ae",
+      "file": "2025-12-04\\session_223649_8489ae.jsonl",
+      "started": "2025-12-05T05:36:49.111657Z"
+    },
+    {
+      "session_id": "session_223815_b22963",
+      "file": "2025-12-04\\session_223815_b22963.jsonl",
+      "started": "2025-12-05T05:38:15.727518Z"
+    },
+    {
+      "session_id": "session_080840_1363bc",
+      "file": "2025-12-05\\session_080840_1363bc.jsonl",
+      "started": "2025-12-05T15:08:40.250430Z"
+    },
+    {
+      "session_id": "session_082511_6b4f47",
+      "file": "2025-12-05\\session_082511_6b4f47.jsonl",
+      "started": "2025-12-05T15:25:11.231855Z"
+    },
+    {
+      "session_id": "session_083302_f03fde",
+      "file": "2025-12-05\\session_083302_f03fde.jsonl",
+      "started": "2025-12-05T15:33:02.998635Z"
+    },
+    {
+      "session_id": "session_083315_19a09e",
+      "file": "2025-12-05\\session_083315_19a09e.jsonl",
+      "started": "2025-12-05T15:33:15.436399Z"
+    },
+    {
+      "session_id": "session_084321_b7d9be",
+      "file": "2025-12-05\\session_084321_b7d9be.jsonl",
+      "started": "2025-12-05T15:43:21.064527Z"
+    },
+    {
+      "session_id": "session_100953_1b4f17",
+      "file": "2025-12-05\\session_100953_1b4f17.jsonl",
+      "started": "2025-12-05T17:09:53.935397Z"
+    },
+    {
+      "session_id": "session_103130_8b2a01",
+      "file": "2025-12-05\\session_103130_8b2a01.jsonl",
+      "started": "2025-12-05T17:31:30.430539Z"
+    },
+    {
+      "session_id": "session_103215_9818fd",
+      "file": "2025-12-05\\session_103215_9818fd.jsonl",
+      "started": "2025-12-05T17:32:15.452987Z"
+    },
+    {
+      "session_id": "session_104040_4ed0aa",
+      "file": "2025-12-05\\session_104040_4ed0aa.jsonl",
+      "started": "2025-12-05T17:40:40.554425Z"
+    },
+    {
+      "session_id": "session_104539_d8f8f4",
+      "file": "2025-12-05\\session_104539_d8f8f4.jsonl",
+      "started": "2025-12-05T17:45:39.587568Z"
+    },
+    {
+      "session_id": "session_105842_6ad2bb",
+      "file": "2025-12-05\\session_105842_6ad2bb.jsonl",
+      "started": "2025-12-05T17:58:42.856937Z"
+    },
+    {
+      "session_id": "session_111326_3dbf6f",
+      "file": "2025-12-05\\session_111326_3dbf6f.jsonl",
+      "started": "2025-12-05T18:13:26.214948Z"
+    },
+    {
+      "session_id": "session_111946_a7113a",
+      "file": "2025-12-05\\session_111946_a7113a.jsonl",
+      "started": "2025-12-05T18:19:46.411187Z"
+    },
+    {
+      "session_id": "session_114836_84c063",
+      "file": "2025-12-05\\session_114836_84c063.jsonl",
+      "started": "2025-12-05T18:48:36.914884Z"
+    },
+    {
+      "session_id": "session_115037_bc2e63",
+      "file": "2025-12-05\\session_115037_bc2e63.jsonl",
+      "started": "2025-12-05T18:50:37.279650Z"
+    },
+    {
+      "session_id": "session_115249_8258ad",
+      "file": "2025-12-05\\session_115249_8258ad.jsonl",
+      "started": "2025-12-05T18:52:49.981862Z"
+    },
+    {
+      "session_id": "session_120852_43bbbc",
+      "file": "2025-12-05\\session_120852_43bbbc.jsonl",
+      "started": "2025-12-05T19:08:52.172673Z"
+    }
+  ]
+}

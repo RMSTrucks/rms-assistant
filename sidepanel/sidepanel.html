@@ -21,6 +21,20 @@
       </div>
     </header>
 
+    <!-- Context Bar - Real-time page awareness -->
+    <div class="context-bar hidden" id="contextBar">
+      <div class="context-indicator">
+        <span class="context-dot"></span>
+      </div>
+      <div class="context-info">
+        <div class="context-site" id="contextSite">Unknown</div>
+        <div class="context-details" id="contextDetails"></div>
+      </div>
+      <div class="context-actions" id="contextActions">
+        <!-- Dynamic buttons based on context -->
+      </div>
+    </div>
+
     <!-- Messages Container -->
     <main class="messages-container" id="messagesContainer">
       <div class="welcome-message">
@@ -34,6 +48,290 @@
         <p>What can I help you with?</p>
       </div>
     </main>
+
+    <!-- Quote Form Panel -->
+    <div class="quote-panel hidden" id="quotePanel">
+      <div class="quote-header">
+        <h2>New Quote</h2>
+        <div class="quote-header-actions">
+          <button class="quote-btn-secondary" id="quoteCancel">Cancel</button>
+          <button class="quote-btn-primary" id="quoteSave">Save & Export</button>
+        </div>
+      </div>
+
+      <!-- Section Navigation -->
+      <nav class="quote-nav">
+        <a href="#section-company" class="quote-nav-item active">Company</a>
+        <a href="#section-owner" class="quote-nav-item">Owner</a>
+        <a href="#section-operations" class="quote-nav-item">Operations</a>
+        <a href="#section-vehicles" class="quote-nav-item">Vehicles</a>
+        <a href="#section-drivers" class="quote-nav-item">Drivers</a>
+        <a href="#section-notes" class="quote-nav-item">Notes</a>
+      </nav>
+
+      <div class="quote-form-container" id="quoteFormContainer">
+        <form id="quoteForm">
+          <!-- Company Info Section -->
+          <section id="section-company" class="quote-section">
+            <h3>Company Info</h3>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Company Name</label>
+                <input type="text" name="companyName" id="qCompanyName">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Address</label>
+                <input type="text" name="address" id="qAddress">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city" id="qCity">
+              </div>
+              <div class="form-group small">
+                <label>State</label>
+                <input type="text" name="state" id="qState" maxlength="2">
+              </div>
+              <div class="form-group zip">
+                <label>Zip</label>
+                <input type="text" name="zip" id="qZip">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" name="phone" id="qPhone">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" id="qEmail">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>DOT #</label>
+                <input type="text" name="dotNumber" id="qDotNumber">
+              </div>
+              <div class="form-group">
+                <label>MC #</label>
+                <input type="text" name="mcNumber" id="qMcNumber">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>EIN/Tax ID</label>
+                <input type="text" name="ein" id="qEin">
+              </div>
+              <div class="form-group">
+                <label>Effective Date</label>
+                <input type="date" name="effectiveDate" id="qEffectiveDate">
+              </div>
+            </div>
+          </section>
+
+          <!-- Owner Info Section -->
+          <section id="section-owner" class="quote-section">
+            <h3>Owner Info</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Owner Name</label>
+                <input type="text" name="ownerName" id="qOwnerName">
+              </div>
+              <div class="form-group">
+                <label>Birth Date</label>
+                <input type="date" name="ownerDob" id="qOwnerDob">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group small">
+                <label>License State</label>
+                <input type="text" name="ownerLicenseState" id="qOwnerLicenseState" maxlength="2">
+              </div>
+              <div class="form-group">
+                <label>License #</label>
+                <input type="text" name="ownerLicenseNumber" id="qOwnerLicenseNumber">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="ownerIsDriver" id="qOwnerIsDriver">
+                  Owner is a Driver
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="ownerHasCdl" id="qOwnerHasCdl">
+                  Has CDL
+                </label>
+              </div>
+              <div class="form-group small">
+                <label>Year Issued</label>
+                <input type="text" name="cdlYearIssued" id="qCdlYearIssued" maxlength="4">
+              </div>
+            </div>
+          </section>
+
+          <!-- Operations Info Section -->
+          <section id="section-operations" class="quote-section">
+            <h3>Operations Info</h3>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Garaging Location (if different)</label>
+                <input type="text" name="garagingLocation" id="qGaragingLocation">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Goods Hauled</label>
+                <input type="text" name="goodsHauled" id="qGoodsHauled">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Radius/Distance</label>
+                <select name="radius" id="qRadius">
+                  <option value="">-Select-</option>
+                  <option value="local">Local (0-50 mi)</option>
+                  <option value="intermediate">Intermediate (51-200 mi)</option>
+                  <option value="regional">Regional (201-500 mi)</option>
+                  <option value="national">National (500+ mi)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="hasEld" id="qHasEld">
+                  Has ELD
+                </label>
+              </div>
+              <div class="form-group">
+                <label>ELD Provider</label>
+                <input type="text" name="eldProvider" id="qEldProvider">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amazonWork" id="qAmazonWork">
+                  Amazon Work
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="refrigeratedGoods" id="qRefrigeratedGoods">
+                  Refrigerated Goods
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- Vehicles Section -->
+          <section id="section-vehicles" class="quote-section">
+            <h3>Vehicles</h3>
+            <h4>Trucks</h4>
+            <div class="vehicles-table" id="trucksTable">
+              <div class="vehicle-row" data-vehicle="truck-1">
+                <select name="truck1Type"><option value="">Type</option><option value="sleeper">Sleeper</option><option value="daycab">Day Cab</option><option value="boxtruck">Box Truck</option><option value="pickup">Pickup</option></select>
+                <input type="text" name="truck1Year" maxlength="4" placeholder="Year">
+                <input type="text" name="truck1Make" placeholder="Make">
+                <input type="text" name="truck1Model" placeholder="Model">
+                <input type="text" name="truck1Vin" placeholder="VIN">
+                <input type="text" name="truck1Value" placeholder="Value $">
+              </div>
+            </div>
+            <button type="button" class="add-row-btn" id="addTruckBtn">+ Add Truck</button>
+
+            <h4>Trailers</h4>
+            <div class="vehicles-table" id="trailersTable">
+              <div class="vehicle-row" data-vehicle="trailer-1">
+                <select name="trailer1Type"><option value="">Type</option><option value="dryvan">Dry Van</option><option value="flatbed">Flatbed</option><option value="reefer">Reefer</option><option value="tanker">Tanker</option><option value="stepdeck">Step Deck</option></select>
+                <input type="text" name="trailer1Year" maxlength="4" placeholder="Year">
+                <input type="text" name="trailer1Make" placeholder="Make">
+                <input type="text" name="trailer1Model" placeholder="Model">
+                <input type="text" name="trailer1Vin" placeholder="VIN">
+                <input type="text" name="trailer1Value" placeholder="Value $">
+              </div>
+            </div>
+            <button type="button" class="add-row-btn" id="addTrailerBtn">+ Add Trailer</button>
+          </section>
+
+          <!-- Drivers Section -->
+          <section id="section-drivers" class="quote-section">
+            <h3>Drivers</h3>
+            <div class="drivers-table" id="driversTable">
+              <div class="driver-row" data-driver="1">
+                <input type="text" name="driver1Name" placeholder="Driver Name">
+                <input type="date" name="driver1Dob" title="Date of Birth">
+                <input type="text" name="driver1License" placeholder="License #">
+                <input type="text" name="driver1State" maxlength="2" placeholder="ST">
+                <input type="date" name="driver1HireDate" title="Hire Date">
+                <input type="text" name="driver1Experience" placeholder="Yrs Exp">
+              </div>
+            </div>
+            <button type="button" class="add-row-btn" id="addDriverBtn">+ Add Driver</button>
+          </section>
+
+          <!-- Notes Section -->
+          <section id="section-notes" class="quote-section">
+            <h3>Coverage Notes</h3>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Liability</label>
+                <textarea name="liabilityNotes" id="qLiabilityNotes" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Cargo</label>
+                <textarea name="cargoNotes" id="qCargoNotes" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>General Liability</label>
+                <textarea name="glNotes" id="qGlNotes" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Additional Notes</label>
+                <textarea name="additionalNotes" id="qAdditionalNotes" rows="3"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- Start Carrier Quotes Section -->
+          <section id="section-carriers" class="quote-section carrier-section">
+            <h3>Start Carrier Quotes</h3>
+            <p class="section-hint">Opens carrier portal in background tab. Agent will fill the form.</p>
+            <div class="carrier-buttons">
+              <button type="button" class="carrier-quote-btn" data-carrier="progressive">
+                <span class="carrier-logo">P</span>
+                <span class="carrier-name">Progressive</span>
+              </button>
+              <button type="button" class="carrier-quote-btn" data-carrier="bhhc">
+                <span class="carrier-logo">B</span>
+                <span class="carrier-name">Berkshire</span>
+              </button>
+              <button type="button" class="carrier-quote-btn" data-carrier="geico">
+                <span class="carrier-logo">G</span>
+                <span class="carrier-name">Geico</span>
+              </button>
+              <button type="button" class="carrier-quote-btn" data-carrier="jmwilson">
+                <span class="carrier-logo">JM</span>
+                <span class="carrier-name">JM Wilson</span>
+              </button>
+            </div>
+            <div class="carrier-status" id="carrierStatus"></div>
+          </section>
+        </form>
+      </div>
+    </div>
 
     <!-- Action Confirmation Overlay -->
     <div class="action-overlay hidden" id="actionOverlay">
@@ -52,19 +350,43 @@
       </div>
     </div>
 
+    <!-- Quick Actions -->
+    <div class="quick-actions" id="quickActions">
+      <button class="quick-btn" data-prompt="Search Close CRM for ">Search Close</button>
+      <button class="quick-btn" data-prompt="Look up DOT number ">Lookup DOT</button>
+      <button class="quick-btn" data-prompt="Check NowCerts for ">Check NowCerts</button>
+      <button class="quick-btn" data-prompt="Start Progressive quote for ">Start Quote</button>
+    </div>
+
     <!-- Input Area -->
     <footer class="input-area">
-      <div class="input-wrapper">
-        <textarea
-          id="messageInput"
-          placeholder="Type a message... (Shift+Enter for newline)"
-          rows="1"
-        ></textarea>
-        <button class="send-button" id="sendButton" disabled>
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-          </svg>
-        </button>
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-zone-overlay" id="dropOverlay">
+          <div class="drop-zone-content">
+            <span class="drop-icon">📄</span>
+            <span class="drop-text">Drop file here</span>
+            <span class="drop-hint">PDF, PNG, JPG up to 10MB</span>
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <textarea
+            id="messageInput"
+            placeholder="Type a message or drop a file... (Shift+Enter for newline)"
+            rows="1"
+          ></textarea>
+          <button class="attach-button" id="attachButton" title="Attach file">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="currentColor" d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+            </svg>
+          </button>
+          <button class="send-button" id="sendButton" disabled>
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
+        <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg" hidden>
+        <div class="file-preview" id="filePreview"></div>
       </div>
       <div class="input-hint">
         <span class="tab-info" id="tabInfo">No tab selected</span>

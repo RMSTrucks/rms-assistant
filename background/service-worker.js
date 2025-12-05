@@ -2,22 +2,13 @@
  * RMS Work Assistant - Service Worker
  *
  * Handles:
- * - WebSocket connection to Python agent server
- * - Message routing between sidepanel and content scripts
+ * - Browser action execution (navigation, clicks, fills, screenshots)
  * - Tab state management
- * - Screenshot capture
- * - Browser action handling
+ * - Side panel management
+ *
+ * NOTE: WebSocket connection is handled by sidepanel.js
+ * Browser actions are forwarded via chrome.runtime.sendMessage
  */
-
-// Configuration
-const CONFIG = {
-  wsUrl: 'ws://localhost:8765',
-  reconnectDelay: 3000
-};
-
-// State
-let ws = null;
-let sidePanelPort = null;
 
 // ============================================================================
 // SIDE PANEL MANAGEMENT
@@ -30,82 +21,6 @@ chrome.action.onClicked.addListener(async (tab) => {
 
 // Set side panel behavior
 chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
-
-// ============================================================================
-// WEBSOCKET CONNECTION
-// ============================================================================
-
-function connectWebSocket() {
-  if (ws && ws.readyState === WebSocket.OPEN) {
-    return;
-  }
-
-  console.log('[RMS SW] Connecting to agent server...');
-
-  try {
-    ws = new WebSocket(CONFIG.wsUrl);
-
-    ws.onopen = () => {
-      console.log('[RMS SW] Connected to agent server');
-      broadcastToSidePanel({ type: 'CONNECTION_STATUS', connected: true });
-    };
-
-    ws.onclose = () => {
-      console.log('[RMS SW] Disconnected from agent server');
-      broadcastToSidePanel({ type: 'CONNECTION_STATUS', connected: false });
-      ws = null;
-
-      // Attempt reconnect
-      setTimeout(connectWebSocket, CONFIG.reconnectDelay);
-    };
-
-    ws.onerror = (error) => {
-      console.error('[RMS SW] WebSocket error:', error);
-    };
-
-    ws.onmessage = (event) => {
-      handleAgentMessage(JSON.parse(event.data));
-    };
-  } catch (error) {
-    console.error('[RMS SW] Failed to create WebSocket:', error);
-    setTimeout(connectWebSocket, CONFIG.reconnectDelay);
-  }
-}
-
-function sendToAgent(message) {
-  if (ws && ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify(message));
-    return true;
-  }
-  return false;
-}
-
-// ============================================================================
-// MESSAGE HANDLING
-// ============================================================================
-
-async function handleAgentMessage(data) {
-  console.log('[RMS SW] Agent message:', data);
-
-  switch (data.type) {
-    // Pass through to side panel
-    case 'response_start':
-    case 'response_chunk':
-    case 'response_end':
-    case 'tool_call':
-    case 'tool_result':
-    case 'action_request':
-    case 'error':
-      broadcastToSidePanel(data);
-      break;
-
-    // Execute browser actions
-    case 'browser_action':
-      const result = await executeBrowserAction(data);
-      sendToAgent({ type: 'browser_action_result', actionId: data.actionId, result });
-      break;
-  }
-}
 
 // ============================================================================
 // BROWSER ACTIONS
@@ -125,6 +40,9 @@ async function executeBrowserAction(action) {
       case 'get_tab_state':
         return await getTabState();
 
+      case 'get_specific_tab_state':
+        return await getSpecificTabState(action.tab_id);
+
       case 'execute_script':
         return await executeInTab(action.script);
 
@@ -136,6 +54,15 @@ async function executeBrowserAction(action) {
 
       case 'get_page_state':
         return await getPageState();
+
+      case 'select_option':
+        return await selectOption(action.selector, action.value);
+
+      case 'click_radio':
+        return await clickRadio(action.label_contains);
+
+      case 'fill_search':
+        return await fillSearch(action.selector, action.value, action.select_first);
 
       default:
         return { success: false, error: `Unknown action: ${action.action}` };
@@ -177,6 +104,22 @@ async function getTabState() {
     };
   }
   return { success: false, error: 'No active tab' };
+}
+
+async function getSpecificTabState(tabId) {
+  try {
+    const tab = await chrome.tabs.get(tabId);
+    return {
+      success: true,
+      tab: {
+        id: tab.id,
+        url: tab.url,
+        title: tab.title
+      }
+    };
+  } catch (error) {
+    return { success: false, error: `Tab ${tabId} not found: ${error.message}` };
+  }
 }
 
 async function executeInTab(script) {
@@ -270,31 +213,161 @@ async function getPageState() {
   return { success: false, error: 'No active tab' };
 }
 
+async function selectOption(selector, value) {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (sel, val) => {
+        // Try multiple selectors
+        const selectors = sel.split(',').map(s => s.trim());
+        let select = null;
+
+        for (const s of selectors) {
+          select = document.querySelector(s);
+          if (select) break;
+        }
+
+        if (!select) {
+          return { success: false, error: 'Select element not found' };
+        }
+
+        // Try to select by value first, then by text
+        let found = false;
+        for (const option of select.options) {
+          if (option.value === val || option.text.toUpperCase().includes(val.toUpperCase())) {
+            select.value = option.value;
+            found = true;
+            break;
+          }
+        }
+
+        if (found) {
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          return { success: true };
+        }
+
+        return { success: false, error: `Option '${val}' not found in select` };
+      },
+      args: [selector, value]
+    });
+    return results[0]?.result || { success: false, error: 'Script execution failed' };
+  }
+  return { success: false, error: 'No active tab' };
+}
+
+async function clickRadio(labelContains) {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (labelText) => {
+        // Find all labels and radio buttons
+        const labels = Array.from(document.querySelectorAll('label'));
+        const searchText = labelText.toLowerCase();
+
+        for (const label of labels) {
+          if (label.textContent.toLowerCase().includes(searchText)) {
+            // Try to find associated radio
+            const radio = label.querySelector('input[type="radio"]') ||
+                          document.getElementById(label.getAttribute('for'));
+            if (radio) {
+              radio.click();
+              return { success: true, clicked: label.textContent.trim() };
+            }
+
+            // If no radio found in label, click the label itself
+            label.click();
+            return { success: true, clicked: label.textContent.trim() };
+          }
+        }
+
+        // Also try finding radio by adjacent text
+        const radios = Array.from(document.querySelectorAll('input[type="radio"]'));
+        for (const radio of radios) {
+          const parent = radio.parentElement;
+          if (parent && parent.textContent.toLowerCase().includes(searchText)) {
+            radio.click();
+            return { success: true, clicked: parent.textContent.trim() };
+          }
+        }
+
+        return { success: false, error: `Radio with label containing '${labelText}' not found` };
+      },
+      args: [labelContains]
+    });
+    return results[0]?.result || { success: false, error: 'Script execution failed' };
+  }
+  return { success: false, error: 'No active tab' };
+}
+
+async function fillSearch(selector, value, selectFirst = true) {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (sel, val, autoSelect) => {
+        // Try multiple selectors
+        const selectors = sel.split(',').map(s => s.trim());
+        let input = null;
+
+        for (const s of selectors) {
+          input = document.querySelector(s);
+          if (input) break;
+        }
+
+        if (!input) {
+          return { success: false, error: 'Search input not found' };
+        }
+
+        // Focus and fill the input
+        input.focus();
+
+        // Use native setter
+        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+          window.HTMLInputElement.prototype, 'value'
+        ).set;
+        nativeInputValueSetter.call(input, val);
+
+        // Dispatch events to trigger autocomplete
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('keyup', { bubbles: true }));
+
+        // If autoSelect, try to click first result after a delay
+        if (autoSelect) {
+          setTimeout(() => {
+            // Look for autocomplete dropdown
+            const suggestions = document.querySelectorAll(
+              '.autocomplete-item, .suggestion, .dropdown-item, [role="option"], ' +
+              '.typeahead-result, .ui-menu-item, [class*="suggestion"], [class*="autocomplete"]'
+            );
+            if (suggestions.length > 0) {
+              suggestions[0].click();
+            }
+          }, 500);
+        }
+
+        return { success: true };
+      },
+      args: [selector, value, selectFirst]
+    });
+    return results[0]?.result || { success: false, error: 'Script execution failed' };
+  }
+  return { success: false, error: 'No active tab' };
+}
+
 // ============================================================================
 // COMMUNICATION
 // ============================================================================
 
-function broadcastToSidePanel(message) {
-  // Send to any connected side panel
-  chrome.runtime.sendMessage(message).catch(() => {
-    // Side panel might not be open, that's okay
-  });
-}
+// Cache latest page context per tab
+const pageContextCache = new Map();
 
-// Listen for messages from side panel and content scripts
+// Listen for messages from content scripts and side panel
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('[RMS SW] Received message:', message);
+  console.log('[RMS SW] Received message:', message.type);
 
   switch (message.type) {
-    case 'SEND_TO_AGENT':
-      const sent = sendToAgent(message.data);
-      sendResponse({ success: sent });
-      break;
-
-    case 'GET_CONNECTION_STATUS':
-      sendResponse({ connected: ws && ws.readyState === WebSocket.OPEN });
-      break;
-
     case 'CAPTURE_SCREENSHOT':
       captureScreenshot().then(result => sendResponse(result));
       return true;  // Keep channel open for async response
@@ -306,23 +379,61 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case 'GET_PAGE_STATE':
       getPageState().then(result => sendResponse(result));
       return true;
+
+    case 'EXECUTE_BROWSER_ACTION':
+      // Execute browser action forwarded from sidepanel
+      console.log('[RMS SW] Executing browser action:', message.action?.action);
+      executeBrowserAction(message.action).then(result => {
+        console.log('[RMS SW] Browser action result:', result);
+        sendResponse(result);
+      });
+      return true;  // Keep channel open for async response
+
+    case 'PAGE_CONTEXT_UPDATE':
+      // Route context updates from page-watcher to sidepanel
+      console.log('[RMS SW] Page context update:', message.site, message.companyName || message.carrierName || '');
+
+      // Cache the context for this tab
+      if (sender.tab?.id) {
+        pageContextCache.set(sender.tab.id, message);
+      }
+
+      // Forward to sidepanel
+      chrome.runtime.sendMessage({
+        type: 'PAGE_CONTEXT_UPDATE',
+        ...message,
+        tabId: sender.tab?.id
+      }).catch(() => {
+        // Side panel might not be open
+      });
+      return false;
+
+    case 'GET_CACHED_CONTEXT':
+      // Return cached context for a tab
+      const cachedContext = pageContextCache.get(message.tabId);
+      sendResponse({ success: true, context: cachedContext || null });
+      return true;
   }
 });
 
 // Track tab changes and notify side panel
 chrome.tabs.onActivated.addListener(async (activeInfo) => {
   const tab = await chrome.tabs.get(activeInfo.tabId);
-  broadcastToSidePanel({
+  chrome.runtime.sendMessage({
     type: 'TAB_STATE_UPDATE',
     tab: { id: tab.id, url: tab.url, title: tab.title }
+  }).catch(() => {
+    // Side panel might not be open, that's okay
   });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete') {
-    broadcastToSidePanel({
+    chrome.runtime.sendMessage({
       type: 'TAB_STATE_UPDATE',
       tab: { id: tab.id, url: tab.url, title: tab.title }
+    }).catch(() => {
+      // Side panel might not be open, that's okay
     });
   }
 });
@@ -331,5 +442,4 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 // INITIALIZATION
 // ============================================================================
 
-console.log('[RMS SW] Service worker starting...');
-connectWebSocket();
+console.log('[RMS SW] Service worker ready (no WebSocket - sidepanel handles connection)');

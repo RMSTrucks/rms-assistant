@@ -1,0 +1,3 @@
+{"event": "session_start", "session_id": "session_114836_84c063", "metadata": {"source": "chrome_extension"}, "ts": "2025-12-05T18:48:36.865787Z"}
+{"event": "tool_call", "tool": "CloseCRMTools.get_lead", "args": {}, "result": "Lead: FLASH TRANSPORTATION SERVICE LLC\nID: lead_XxmTtwjNOmTy4dTSAwDwFa6hbAWjGDeArVKON36u9ZS\nStatus: Potential Customer\nCreated: 2025-12-05\n\nContacts:\n  - None\n    Phones: +13479513662\n\nCustom Fields:\n  - Usdot Number: 4502672\n\nAddresses:\n  - 2968 OLIVETTE RD 2968 OLIVETTE RD, COLUMBUS, OH, 43232", "success": true, "duration_ms": 1373.05, "ts": "2025-12-05T18:48:49.280419Z"}
+{"event": "session_end", "summary": null, "ts": "2025-12-05T18:50:22.200159Z"}

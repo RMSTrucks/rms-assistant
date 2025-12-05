@@ -2,6 +2,7 @@
 RMS Insurance Agent
 
 Main agent implementation with LangWatch instrumentation.
+Prompts managed via LangWatch Prompt CLI (see prompts.json).
 """
 
 import os
@@ -29,41 +30,6 @@ load_dotenv()
 langwatch.api_key = os.getenv("LANGWATCH_API_KEY")
 
 
-def load_prompt_from_file(prompt_name: str) -> dict:
-    """
-    Load a prompt from the prompts directory.
-
-    Args:
-        prompt_name: Name of the prompt file (without .yaml extension)
-
-    Returns:
-        dict: Prompt configuration including system message
-    """
-    import yaml
-
-    prompt_path = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "prompts",
-        f"{prompt_name}.yaml"
-    )
-
-    with open(prompt_path, "r") as f:
-        prompt_data = yaml.safe_load(f)
-
-    # Extract system message from messages list
-    system_message = ""
-    for msg in prompt_data.get("messages", []):
-        if msg.get("role") == "system":
-            system_message = msg.get("content", "")
-            break
-
-    return {
-        "model": prompt_data.get("model", "claude-sonnet-4-20250514"),
-        "temperature": prompt_data.get("temperature", 0.7),
-        "instructions": system_message,
-    }
-
-
 # Global agent instance - create once, reuse always
 _agent_instance: Optional[Agent] = None
 
@@ -75,20 +41,31 @@ def get_agent() -> Agent:
     CRITICAL: This function ensures we create the agent only once
     and reuse it for all requests. Never create agents in loops!
 
+    Prompts are fetched from LangWatch registry (managed via CLI).
+    See: https://docs.langwatch.ai/prompt-management/cli
+
     Returns:
         Agent: The RMS insurance agent instance
     """
     global _agent_instance
 
     if _agent_instance is None:
-        # Load prompt configuration
-        prompt_config = load_prompt_from_file("rms-insurance-agent-v2")
+        # Fetch prompt from LangWatch registry
+        # Prompts synced via: npx langwatch prompt sync
+        prompt = langwatch.prompts.get("rms-insurance-agent-v2")
+
+        # Extract system message from messages list
+        system_message = ""
+        for msg in prompt.messages:
+            if msg.get("role") == "system":
+                system_message = msg.get("content", "")
+                break
 
         # Create the agent with all tools
         _agent_instance = Agent(
             name="RMS Insurance Assistant",
-            model=Claude(id="claude-sonnet-4-20250514"),
-            instructions=prompt_config["instructions"],
+            model=Claude(id=prompt.model or "claude-sonnet-4-20250514"),
+            instructions=system_message,
             tools=[
                 DOTLookupTools(),
                 CloseCRMTools(),

@@ -1,12 +1,5 @@
 {
-  "prompts": [
-    {
-      "id": "rms-insurance-agent",
-      "name": "rms-insurance-agent",
-      "file": "prompts/rms-insurance-agent.yaml",
-      "version": "1.0.0",
-      "model": "gpt-4o",
-      "temperature": 0.7
-    }
-  ]
+  "prompts": {
+    "rms-insurance-agent-v2": "file:./prompts/rms-insurance-agent-v2.prompt.yaml"
+  }
 }

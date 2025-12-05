@@ -1,0 +1,10 @@
+{
+  "lockfileVersion": 1,
+  "prompts": {
+    "rms-insurance-agent-v2": {
+      "version": 1,
+      "versionId": "prompt_version_JnZQ13Us8sqE0fkHFeDPQ",
+      "materialized": "./prompts/rms-insurance-agent-v2.prompt.yaml"
+    }
+  }
+}
